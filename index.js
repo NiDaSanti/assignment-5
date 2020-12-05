@@ -32,11 +32,33 @@
 
 //@param {string}
 //@return {character} => array of characters
-vowelOrConsonant = () => {
-  return
+let word = prompt("Enter a word:");
+
+
+vowelOrConsonant = (word) => {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'];
+  var letters = word.split('');
+  var vowelsFound = [], consonantsFound = [];
+
+  for (var i in letters) {
+      if (vowels.includes(letters[i])) {
+          vowelsFound.push(letters[i]);
+      } else {
+          consonantsFound.push(letters[i]);
+      }
+  }
+
+  let choice = prompt("Do you want the vowels first or consonants first? For vowels enter 'vowels' or for consonants enter 'consonants'.");
+  if (choice == "vowels"){
+    console.log("Vowels:", vowelsFound.join(""));
+    return vowelsFound
+  } else {
+    console.log("Consonants:", consonantsFound.join(""));
+    return consonantsFound
+  }
 }
 
-const answer2 = vowelOrConsonant()
+const answer2 = vowelOrConsonant(word)
 
 const htmlTarget2 = document.getElementById('a-2')
 htmlTarget2.innerHTML = answer2

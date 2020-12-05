@@ -6,15 +6,22 @@
  //@param {number} number1
  //@param {number} number2
  //@return {number} product
-const multiplication = () => {
-  return
-}
-
-const answer1 = multiplication()
-console.log('answer1', answer1)
-
-const htmlTarget = document.getElementById('a-1')
-htmlTarget.innerHTML = answer1
+ let num1 = parseInt(prompt("Enter a number:"));
+ let num2 = parseInt(prompt("Enter a second number:"));
+ let total = 0;
+ 
+ const multiplication = (num1, num2) => {
+   for (let i = 0; i < num2; i++){
+     total += num1
+     }
+   return total
+ }
+ 
+ const answer1 = multiplication(num1, num2)
+ console.log('answer1', answer1)
+ 
+ const htmlTarget = document.getElementById('a-1')
+ htmlTarget.innerHTML = answer1
 
 
 

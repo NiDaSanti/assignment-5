@@ -74,11 +74,33 @@ htmlTarget2.innerHTML = answer2
 //where: name, saves the name of the player. Lives, represents the remaining oportunities each time the player fails. Fail_numbers, is an array of numbers that stores the fail numbers the player has used
 
 //@return {string} win / gameOver => the string that says if the user wasted the three oportunities showing the fails numbers or the name if the player wins
-guessTheNumber  = () => {
-  return
-}
+let player = prompt("Enter your name:");
 
-const answer3 = guessTheNumber()
+guessTheNumber = (player) => {
+  let lives = 3 
+  let randomNumber = Math.floor(Math.random() * 50) + 10,
+    guess,
+    text = 'Guess a number: ';
+  do {
+    guess = prompt(text);
+    if (randomNumber < guess) {
+        lives--
+        text = `You've guessed ${guess} too high! You have ${lives} left!`; 
+    } if (lives == 0){
+      alert(`Game Over! The correct number was: ${randomNumber}`)
+      end
+    } else if (randomNumber > guess) {
+        lives-- 
+        text = `You've guessed ${guess} too low! You have ${lives} left!`; 
+    }
+  } 
+  while (guess != randomNumber) {
+    alert(`Congratulations, ${player.toUpperCase()}!`) 
+    return
+  }
+} 
+
+const answer3 = guessTheNumber(player)
 
 const htmlTarget3 = document.getElementById('a-3')
 htmlTarget3.innerHTML = answer3

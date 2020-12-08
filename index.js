@@ -86,9 +86,9 @@ guessTheNumber = (player) => {
     if (randomNumber < guess) {
         lives--
         text = `You've guessed ${guess} too high! You have ${lives} left!`; 
-    } if (lives == 0){
+    } if (lives != 0){
       alert(`Game Over! The correct number was: ${randomNumber}`)
-      end
+      return
     } else if (randomNumber > guess) {
         lives-- 
         text = `You've guessed ${guess} too low! You have ${lives} left!`; 

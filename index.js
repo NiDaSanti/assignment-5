@@ -111,8 +111,9 @@ htmlTarget3.innerHTML = answer3
 // In the function below we are giving you an array of objects, each one with the same properties. Ask to the user for 3 diferentes options to sorting the array from the highest to lowest. In the case of a string, the criteria to sort must be the length of the string. The first one is sorting the array of objects based on the title property.
 // The second one sorting the array of objects based on the author property, the third one based on the library property. finally, the return value has to be the string sorted of the property selected separeted with a semicolon. Remember you have to sort all of the array based on the selected property
 //example: if the user select sorting by title the return value must be: "Mockingjay: The Final Book of The Hunger Games; Walter Isaacson; The Road Ahead"
+let list = prompt("Do you want to sort by title, author or library");
 
-sort = () => {
+sort = (list) => {
 
   var library = [
    {
@@ -131,10 +132,46 @@ sort = () => {
        libraryID: 3245
    }];
 
-  return
+   function compare_to_sort_title(x,y) {
+     if (x.title < y.title)
+        return -1;
+      if (x.title > y.title)
+        return 1;
+        return 0;
+    }
+
+
+    function compare_to_sort_author(x,y) {
+      if (x.author < y.author)
+         return -1;
+       if (x.author > y.author)
+         return 1;
+         return 0;
+     }
+
+
+     function compare_to_sort_libraryID(x,y) {
+      if (x.libraryID < y.libraryID)
+         return -1;
+       if (x.libraryID > y.libraryID)
+         return 1;
+         return 0;
+     }
+
+  do {
+    if (list = "title") {
+      console.log(library.sort(compare_to_sort_title));
+    }  else if (list == "library") {
+      console.log(library.sort(compare_to_sort_libraryID));
+    }
+  } 
+  while (list != "author") {
+    console.log(library.sort(compare_to_sort_author));
+    }
 }
 
-const answer4 = sort()
+
+const answer4 = sort(list)
 
 const htmlTarget4 = document.getElementById('a-4')
 htmlTarget4.innerHTML = answer4

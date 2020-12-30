@@ -51,10 +51,10 @@ vowelOrConsonant = (word) => {
   let choice = prompt("Do you want the vowels first or consonants first? For vowels enter 'vowels' or for consonants enter 'consonants'.");
   if (choice == "vowels"){
     console.log("Vowels:", vowelsFound.join(""));
-    return vowelsFound
+    return vowelsFound.concat(consonantsFound)
   } else {
     console.log("Consonants:", consonantsFound.join(""));
-    return consonantsFound
+    return consonantsFound.concat(vowelsFound)
   }
 }
 
@@ -78,7 +78,7 @@ let player = prompt("Enter your name:");
 
 guessTheNumber = (player) => {
   let lives = 3 
-  let randomNumber = Math.floor(Math.random() * 50) + 10,
+  let randomNumber = Math.floor(Math.random() * (50 - 10 + 1) ) + 10,
     guess,
     text = 'Guess a number: ';
   do {
@@ -111,10 +111,7 @@ htmlTarget3.innerHTML = answer3
 // In the function below we are giving you an array of objects, each one with the same properties. Ask to the user for 3 diferentes options to sorting the array from the highest to lowest. In the case of a string, the criteria to sort must be the length of the string. The first one is sorting the array of objects based on the title property.
 // The second one sorting the array of objects based on the author property, the third one based on the library property. finally, the return value has to be the string sorted of the property selected separeted with a semicolon. Remember you have to sort all of the array based on the selected property
 //example: if the user select sorting by title the return value must be: "Mockingjay: The Final Book of The Hunger Games; Walter Isaacson; The Road Ahead"
-let list = prompt("Do you want to sort by title, author or library");
-
-sort = (list) => {
-
+sort = () => {
   var library = [
    {
        title:  'The Road Ahead',
@@ -132,46 +129,48 @@ sort = (list) => {
        libraryID: 3245
    }];
 
-   function compare_to_sort_title(x,y) {
-     if (x.title < y.title)
-        return -1;
-      if (x.title > y.title)
-        return 1;
-        return 0;
+let list = prompt("Do you want to sort by title, author or id.");
+
+let listResult = [];
+let item;
+
+function sorting (list) {
+  for (i=0; i < library.length; i++) {
+    if (list == "title") {
+      item = library[i].title;
+      listResult.push(item);
+    } else if (list == "author") {
+      item = library[i].author;
+      listResult.push(item);
+    } else if (list == "id") {
+      item = (library[i].libraryID);
+      listResult.push(item);
+    } else {
+      list = prompt ("Invalid entry. Please enter 'title','author' or 'id' ");
+      sorting(list);
     }
-
-
-    function compare_to_sort_author(x,y) {
-      if (x.author < y.author)
-         return -1;
-       if (x.author > y.author)
-         return 1;
-         return 0;
-     }
-
-
-     function compare_to_sort_libraryID(x,y) {
-      if (x.libraryID < y.libraryID)
-         return -1;
-       if (x.libraryID > y.libraryID)
-         return 1;
-         return 0;
-     }
-
-  do {
-    if (list = "title") {
-      console.log(library.sort(compare_to_sort_title));
-    }  else if (list == "library") {
-      console.log(library.sort(compare_to_sort_libraryID));
-    }
-  } 
-  while (list != "author") {
-    console.log(library.sort(compare_to_sort_author));
-    }
+  }
 }
 
+sorting(list);
 
-const answer4 = sort(list)
+  if (typeof listResult[0] == "string") {
+    listResult.sort(function(a, b){
+      return b.length - a.length
+    })
+  } else {
+    listResult.sort()
+    listResult.reverse()
+  }  
+  console.log("what's our result?", listResult)
+  let resultString = "";
+  for (i = 0; i < listResult.length; i++) {
+    resultString += listResult[i] + "; "
+  }
+  return resultString
+  }
+
+const answer4 = sort()
 
 const htmlTarget4 = document.getElementById('a-4')
 htmlTarget4.innerHTML = answer4
